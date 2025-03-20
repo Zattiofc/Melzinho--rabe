@@ -52,13 +52,13 @@ function App() {
       amount: '3', 
       get: '6', 
       price: 127.00,
-      url: 'https://entrega.logzz.com.br/pay/mem8d5ngk/6-unidade---r137'
+      url: 'https://entrega.logzz.com.br/pay/mem8d5ngk/6-unidades---r127'
     },
     { 
       amount: '5', 
       get: '10', 
       price: 167.00,
-      url: 'https://entrega.logzz.com.br/pay/mem8d5ngk/10-unidades---r257'
+      url: 'https://entrega.logzz.com.br/pay/mem8d5ngk/10-unidades---r167'
     },
     { 
       amount: '10', 
