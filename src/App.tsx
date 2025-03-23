@@ -1,362 +1,210 @@
 import React, { useState, useEffect } from 'react';
-import { Star, Check, Shield, Truck, Clock, Package, CreditCard, Phone, Heart, Zap, ThumbsUp, AlertCircle, Siren as Fire, Gift } from 'lucide-react';
+import { 
+  Star, 
+  Shield, 
+  Truck, 
+  Clock, 
+  Package, 
+  CheckCircle, 
+  ArrowRight,
+  Zap,
+  Timer
+} from 'lucide-react';
 
-function CountdownTimer() {
-  const [time, setTime] = useState(5 * 60); // 5 minutes in seconds
+function App() {
+  const [timeLeft, setTimeLeft] = useState({ minutes: 10, seconds: 0 });
+  const [recentBuyers] = useState([
+    { name: 'João', city: 'SP', timeAgo: '7 minutos' },
+    { name: 'Maria', city: 'RJ', timeAgo: '12 minutos' },
+    { name: 'Pedro', city: 'MG', timeAgo: '15 minutos' }
+  ]);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 5 * 60));
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) {
+          return { ...prev, seconds: prev.seconds - 1 };
+        } else if (prev.minutes > 0) {
+          return { minutes: prev.minutes - 1, seconds: 59 };
+        }
+        return prev;
+      });
     }, 1000);
+
     return () => clearInterval(timer);
   }, []);
 
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
-
-  return (
-    <div className="flex gap-4 justify-center">
-      <div className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg shadow-lg">
-        <span className="text-3xl font-bold">{String(minutes).padStart(2, '0')}</span>
-        <span className="text-sm block font-medium">Minutos</span>
-      </div>
-      <div className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg shadow-lg">
-        <span className="text-3xl font-bold">{String(seconds).padStart(2, '0')}</span>
-        <span className="text-sm block font-medium">Segundos</span>
-      </div>
-    </div>
-  );
-}
-
-function App() {
-  const [selectedPackage, setSelectedPackage] = useState(0);
   const packages = [
     { 
-      amount: '1', 
-      get: '2', 
-      price: 57.00,
-      url: 'https://entrega.logzz.com.br/pay/mem8d5ngk/2-unidades---r57',
-      savings: 'Economize R$ 57,00',
-      popular: false
+      units: 2, 
+      buyGet: 'Compre 1 e leve +1 de brinde',
+      originalPrice: 137, 
+      price: 57, 
+      savings: 80, 
+      unitPrice: 28.50, 
+      recommendation: 'Para testar',
+      link: 'https://entrega.logzz.com.br/pay/mem8d5ngk/2-unidades---r57'
     },
     { 
-      amount: '2', 
-      get: '4', 
-      price: 97.00,
-      url: 'https://entrega.logzz.com.br/pay/mem8d5ngk/4-unidades---r97',
-      savings: 'Economize R$ 121,00',
-      popular: true
+      units: 4, 
+      buyGet: 'Compre 2 e leve +2 de brinde',
+      originalPrice: 197, 
+      price: 97, 
+      savings: 100, 
+      unitPrice: 24.25, 
+      recommendation: 'Para casais',
+      link: 'https://entrega.logzz.com.br/pay/mem8d5ngk/4-unidades---r97'
     },
     { 
-      amount: '3', 
-      get: '6', 
-      price: 127.00,
-      url: 'https://entrega.logzz.com.br/pay/mem8d5ngk/6-unidade---r137',
-      savings: 'Economize R$ 215,00',
-      popular: false
+      units: 6, 
+      buyGet: 'Compre 3 e leve +3 de brinde',
+      originalPrice: 227, 
+      price: 137, 
+      savings: 90, 
+      unitPrice: 22.83, 
+      recommendation: 'Uso pessoal',
+      link: 'https://entrega.logzz.com.br/pay/mem8d5ngk/6-unidade---r137'
     },
     { 
-      amount: '5', 
-      get: '10', 
-      price: 167.00,
-      url: 'https://entrega.logzz.com.br/pay/mem8d5ngk/10-unidades---r257',
-      savings: 'Economize R$ 403,00',
-      popular: false
+      units: 10, 
+      buyGet: 'Compre 5 e leve +5 de brinde',
+      originalPrice: 347, 
+      price: 257, 
+      savings: 90, 
+      unitPrice: 25.70, 
+      recommendation: 'Para amigos',
+      link: 'https://entrega.logzz.com.br/pay/mem8d5ngk/10-unidades---r257'
     },
     { 
-      amount: '10', 
-      get: '20', 
-      price: 367.00,
-      url: 'https://entrega.logzz.com.br/pay/mem8d5ngk/20-unidades---r367',
-      savings: 'Economize R$ 773,00',
-      popular: false
-    },
+      units: 20, 
+      buyGet: 'Compre 10 e leve +10 de brinde',
+      originalPrice: 547, 
+      price: 367, 
+      savings: 180, 
+      unitPrice: 18.35, 
+      recommendation: 'MELHOR OFERTA',
+      link: 'https://entrega.logzz.com.br/pay/mem8d5ngk/20-unidades---r367'
+    }
   ];
 
   return (
-    <div className="bg-[#F9F9F9]">
-      {/* Header with Timer */}
-      <header className="fixed w-full bg-white shadow-md z-50">
-        <div className="container mx-auto px-4 py-2">
-          <div className="text-center">
-            <p className="text-xl font-bold text-[#E63946] mb-1 flex items-center justify-center gap-2">
-              <Fire className="animate-pulse" />
-              OFERTA ESPECIAL - TERMINA EM:
-              <Fire className="animate-pulse" />
-            </p>
-            <CountdownTimer />
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <header className="bg-gradient-to-r from-red-700 to-red-900 text-white py-16">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            🔥 EXOTIC HONEY: O ESTIMULANTE NATURAL QUE TRANSFORMA SUA VIDA ÍNTIMA!
+          </h1>
+          <div className="max-w-md mx-auto mb-8">
+            <img 
+              src="https://miess.vteximg.com.br/arquivos/ids/228302-900-900/SF6056_1.jpg?v=637624824218230000" 
+              alt="Exotic Honey" 
+              className="w-full rounded-lg shadow-xl"
+            />
+          </div>
+          <p className="text-xl md:text-2xl mb-8">
+            Desperte seu potencial com uma fórmula exclusiva de mel puro e extratos naturais 
+            que aumenta energia, vitalidade e desempenho em minutos!
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 text-lg">
+            <span className="flex items-center"><Truck className="w-5 h-5 mr-2" /> Frete Grátis</span>
+            <span className="flex items-center"><Shield className="w-5 h-5 mr-2" /> Pague na Entrega</span>
+            <span className="flex items-center"><Clock className="w-5 h-5 mr-2" /> Receba em 24h</span>
+            <span className="flex items-center"><CheckCircle className="w-5 h-5 mr-2" /> Satisfação Garantida</span>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="pt-40 pb-16 bg-gradient-to-b from-white to-[#F9F9F9]">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="md:w-1/2">
-              <div className="relative group">
-                <img 
-                  src="https://thumb.braavo.me/hiper/1000/2078072471.webp" 
-                  alt="Melzinho Árabe" 
-                  className="rounded-2xl shadow-2xl w-full transform transition-all duration-300 group-hover:scale-105"
-                />
-                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full transform rotate-12 shadow-lg">
-                  <span className="text-sm font-bold flex items-center gap-2">
-                    <Gift className="animate-bounce" />
-                    LEVE 2 PAGUE 1
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="md:w-1/2">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="text-[#FFD700] fill-[#FFD700] w-6 h-6" />
-                  ))}
-                </div>
-                <span className="text-gray-600 ml-2 font-medium">(4.9/5 com base em 2847 avaliações)</span>
-              </div>
-              <h1 className="text-4xl font-bold text-[#333333] mb-6 leading-tight">
-                Melzinho Árabe: Potência e Vigor Natural para uma Vida Íntima Extraordinária
-              </h1>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Descubra o segredo milenar da medicina árabe que está revolucionando a vida íntima de milhares de brasileiros. 
-                Com resultados comprovados em até 40 minutos após o uso, o Melzinho Árabe é a solução natural que você procurava.
-              </p>
-              <div className="bg-green-50 border-l-4 border-green-500 p-6 mb-8 rounded-r-lg">
-                <div className="flex items-center gap-3 text-green-700 font-medium">
-                  <Check className="text-green-500 w-6 h-6" />
-                  <span>100% Natural e Aprovado pela ANVISA</span>
-                </div>
-                <div className="flex items-center gap-3 text-green-700 font-medium mt-3">
-                  <Check className="text-green-500 w-6 h-6" />
-                  <span>Resultados em até 40 Minutos</span>
-                </div>
-                <div className="flex items-center gap-3 text-green-700 font-medium mt-3">
-                  <Check className="text-green-500 w-6 h-6" />
-                  <span>Satisfação Garantida ou Seu Dinheiro De Volta</span>
-                </div>
-              </div>
-              <a 
-                href="#comprar" 
-                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-4 rounded-full text-xl font-bold hover:from-red-700 hover:to-red-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-              >
-                <Zap className="w-6 h-6" />
-                QUERO AUMENTAR MINHA POTÊNCIA AGORA
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Benefits Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">Benefícios Exclusivos</h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Descubra por que mais de 50.000 brasileiros já escolheram o Melzinho Árabe para transformar sua vida íntima
-          </p>
-          <div className="grid md:grid-cols-4 gap-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            ✨ RESULTADOS EXTRAORDINÁRIOS COM INGREDIENTES 100% NATURAIS ✨
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { icon: Zap, title: 'Ação Ultra Rápida', desc: 'Efeito em até 40 minutos' },
-              { icon: Shield, title: '100% Natural', desc: 'Sem contraindicações' },
-              { icon: Heart, title: 'Maior Disposição', desc: 'Energia que dura horas' },
-              { icon: ThumbsUp, title: 'Satisfação Total', desc: 'Ou seu dinheiro de volta' },
+              { icon: <Zap className="w-8 h-8 text-red-600" />, title: 'Efeito Rápido', description: 'Resultados impressionantes em apenas 30 minutos após o uso' },
+              { icon: <Shield className="w-8 h-8 text-red-600" />, title: 'Totalmente Seguro', description: 'Sem contraindicações ou efeitos colaterais indesejados' },
+              { icon: <Timer className="w-8 h-8 text-red-600" />, title: 'Desempenho Duradouro', description: 'Até 4 horas de energia e vitalidade máxima' },
+              { icon: <Package className="w-8 h-8 text-red-600" />, title: 'Discreto e Prático', description: 'Sachês individuais ou gel de fácil aplicação e transporte' },
+              { icon: <Star className="w-8 h-8 text-red-600" />, title: 'Satisfação Garantida', description: 'Resultados extraordinários ou seu dinheiro de volta' }
             ].map((benefit, index) => (
-              <div key={index} className="flex flex-col items-center text-center p-6 bg-[#F9F9F9] rounded-xl hover:shadow-lg transition-all hover:-translate-y-1">
-                <div className="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-red-100 to-red-200 rounded-full mb-4">
-                  <benefit.icon className="text-[#E63946]" size={32} />
+              <div key={index} className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                <div className="flex items-center mb-4">
+                  {benefit.icon}
+                  <h3 className="text-xl font-semibold ml-3">{benefit.title}</h3>
                 </div>
-                <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.desc}</p>
+                <p className="text-gray-600">{benefit.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="py-16 bg-[#F9F9F9]">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">Como Funciona</h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            O Melzinho Árabe age de forma natural e eficaz, proporcionando resultados impressionantes
+      {/* Urgency Banner */}
+      <div className="bg-red-600 text-white py-4">
+        <div className="container mx-auto px-4 text-center">
+          <h3 className="text-2xl font-bold mb-2">⏰ ATENÇÃO: PROMOÇÃO ESPECIAL POR TEMPO LIMITADO! ⏰</h3>
+          <p className="text-lg">
+            Últimas 37 unidades com desconto! Já foram vendidas 143 nas últimas 6 horas.
           </p>
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {[
-              { step: '1', title: 'Tome 40 minutos antes', desc: 'Dissolva uma porção em água ou suco' },
-              { step: '2', title: 'Sinta o efeito', desc: 'Aumento natural do desejo e disposição' },
-              { step: '3', title: 'Aproveite por horas', desc: 'Efeito duradouro e sem efeitos colaterais' },
-            ].map((step, index) => (
-              <div key={index} className="relative">
-                <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
-                    {step.step}
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 mt-4">{step.title}</h3>
-                  <p className="text-gray-600">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
-      </section>
+      </div>
 
-      {/* Pricing Section */}
-      <section id="comprar" className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">ESCOLHA SEU PACOTE ESPECIAL</h2>
-            <p className="text-gray-600 text-lg">Quanto maior o pacote, maior seu desconto!</p>
-            <div className="mt-4">
-              <CountdownTimer />
-            </div>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
-            {packages.map((pkg, index) => (
-              <div 
-                key={index}
-                className={`relative border-2 rounded-xl p-6 cursor-pointer transition-all ${
-                  selectedPackage === index 
-                    ? 'border-[#E63946] bg-red-50 transform scale-105 shadow-xl' 
-                    : 'border-gray-200 hover:border-[#E63946] hover:shadow-lg'
-                }`}
-                onClick={() => setSelectedPackage(index)}
-              >
-                {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white px-4 py-1 rounded-full text-sm font-bold">
-                    MAIS POPULAR
-                  </div>
-                )}
-                <div className="text-center">
-                  <h3 className="text-xl font-bold mb-2">
-                    Compre {pkg.amount} Leve {pkg.get}
-                  </h3>
-                  <p className="text-4xl font-bold text-[#E63946] mb-2">
-                    R$ {pkg.price.toFixed(2)}
-                  </p>
-                  <p className="text-green-600 font-medium mb-4">
-                    {pkg.savings}
-                  </p>
-                  <div className="flex items-center justify-center gap-2 text-gray-600">
-                    <Truck size={20} />
-                    <span>Frete Grátis</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <a 
-              href={packages[selectedPackage].url}
-              className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-red-600 to-red-700 text-white px-12 py-6 rounded-full text-2xl font-bold hover:from-red-700 hover:to-red-800 transition-all transform hover:-translate-y-1 hover:shadow-xl"
-            >
-              <Fire className="w-8 h-8" />
-              COMPRAR AGORA
-              <Fire className="w-8 h-8" />
-            </a>
-            <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
-              <div className="flex items-center gap-2">
-                <Shield className="text-[#FFD700]" />
-                <span>Compra 100% Segura</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CreditCard className="text-[#FFD700]" />
-                <span>Pague na Entrega</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Package className="text-[#FFD700]" />
-                <span>Entrega Discreta</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-16 bg-[#F9F9F9]">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">Depoimentos Reais</h2>
-          <p className="text-center text-gray-600 mb-12">
-            Veja o que nossos clientes estão dizendo sobre o Melzinho Árabe
-          </p>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { name: 'João Silva, 45 anos', text: 'Produto incrível! Resultados desde o primeiro uso. Recomendo muito!', location: 'São Paulo, SP' },
-              { name: 'Carlos Santos, 52 anos', text: 'Melhorou muito minha disposição. Agora não fico mais sem!', location: 'Rio de Janeiro, RJ' },
-              { name: 'Roberto Lima, 38 anos', text: 'Superou todas as expectativas. Entrega rápida e discreta.', location: 'Belo Horizonte, MG' },
-            ].map((testimonial, index) => (
-              <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="text-[#FFD700] fill-[#FFD700]" size={20} />
-                  ))}
-                </div>
-                <p className="mb-4 text-gray-700 italic">"{testimonial.text}"</p>
-                <p className="font-bold">{testimonial.name}</p>
-                <p className="text-sm text-gray-500">{testimonial.location}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
+      {/* Offers Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Dúvidas Frequentes</h2>
-          <div className="max-w-3xl mx-auto grid gap-6">
-            {[
-              { q: 'O produto é seguro?', a: 'Sim! O Melzinho Árabe é 100% natural e aprovado pela ANVISA.' },
-              { q: 'Quanto tempo demora para fazer efeito?', a: 'Os efeitos começam em até 40 minutos após o uso.' },
-              { q: 'A entrega é discreta?', a: 'Sim! Embalagem totalmente discreta e sem identificação do conteúdo.' },
-              { q: 'Tem efeitos colaterais?', a: 'Por ser um produto natural, não possui efeitos colaterais.' },
-              { q: 'Precisa de receita médica?', a: 'Não é necessário receita médica para comprar.' },
-            ].map((faq, index) => (
-              <div key={index} className="bg-[#F9F9F9] p-6 rounded-xl hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
-                  <AlertCircle className="text-[#E63946]" size={24} />
-                  {faq.q}
-                </h3>
-                <p className="text-gray-700">{faq.a}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            💰 ESCOLHA SUA OFERTA EXCLUSIVA E ECONOMIZE AGORA! 💰
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {packages.map((pkg, index) => (
+              <div key={index} className={`border-2 ${pkg.units === 20 ? 'border-red-500' : 'border-gray-200'} rounded-lg p-6 relative ${pkg.units === 20 ? 'transform hover:scale-105' : 'hover:border-red-300'} transition-all`}>
+                {pkg.units === 20 && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-4 py-1 rounded-full text-sm font-bold">
+                    MAIS VENDIDO
+                  </div>
+                )}
+                <h3 className="text-2xl font-bold mb-2">{pkg.buyGet}</h3>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-gray-500 line-through">R$ {pkg.originalPrice},00</span>
+                  <span className="text-3xl font-bold text-red-600">R$ {pkg.price},00</span>
+                </div>
+                <div className="text-sm text-gray-600 mb-4">
+                  <p>Economia: R$ {pkg.savings},00</p>
+                  <p>Preço por unidade: R$ {pkg.unitPrice.toFixed(2)}</p>
+                  <p className="font-semibold">{pkg.recommendation}</p>
+                </div>
+                <a 
+                  href={pkg.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full py-3 px-6 rounded-lg ${pkg.units === 20 ? 'bg-red-600 hover:bg-red-700' : 'bg-gray-800 hover:bg-gray-900'} text-white font-bold transition-colors flex items-center justify-center`}
+                >
+                  Comprar Agora <ArrowRight className="w-5 h-5 ml-2" />
+                </a>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#333333] text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
-            <div className="flex justify-center items-center gap-2 mb-4">
-              <Phone size={24} />
-              <span className="text-lg">Suporte 24/7 via WhatsApp</span>
-            </div>
-            <div className="flex flex-wrap justify-center items-center gap-6">
-              <div className="flex items-center gap-2">
-                <Shield size={20} />
-                <span>Site 100% Seguro</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CreditCard size={20} />
-                <span>Pagamento na Entrega</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Truck size={20} />
-                <span>Frete Grátis</span>
-              </div>
-            </div>
+      {/* Recent Buyers */}
+      <div className="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 max-w-xs animate-slide-in">
+        {recentBuyers.map((buyer, index) => (
+          <div key={index} className="text-sm mb-2 last:mb-0">
+            <span className="font-semibold">{buyer.name}</span> de {buyer.city} comprou há {buyer.timeAgo}
           </div>
-          <div className="text-center text-sm text-gray-400">
-            <p className="mb-2">© 2025 Melzinho Árabe. Todos os direitos reservados.</p>
-            <p>Este produto é um suplemento natural e os resultados podem variar de pessoa para pessoa.</p>
-          </div>
+        ))}
+      </div>
+
+      {/* Timer */}
+      <div className="fixed bottom-4 right-4 bg-red-600 text-white rounded-lg shadow-lg p-4">
+        <p className="text-sm mb-1">Oferta expira em:</p>
+        <div className="text-2xl font-bold">
+          {String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
         </div>
-      </footer>
+      </div>
     </div>
   );
 }
