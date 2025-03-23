@@ -8,7 +8,12 @@ import {
   CheckCircle, 
   ArrowRight,
   Zap,
-  Timer
+  Timer,
+  Lock,
+  RefreshCw,
+  Droplet,
+  Brain,
+  Heart
 } from 'lucide-react';
 
 function App() {
@@ -141,6 +146,118 @@ function App() {
         </div>
       </section>
 
+      {/* Exclusive Benefits */}
+      <section className="py-16 bg-gradient-to-r from-red-50 to-red-100">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            🏆 VANTAGENS EXCLUSIVAS DO EXOTIC HONEY 🏆
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-4">
+                <Truck className="w-8 h-8 text-red-600" />
+                <span className="ml-3 font-semibold">FRETE 100% GRÁTIS</span>
+              </div>
+              <p>Para todo o Brasil</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-4">
+                <Shield className="w-8 h-8 text-red-600" />
+                <span className="ml-3 font-semibold">PAGUE NA ENTREGA</span>
+              </div>
+              <p>Sem risco para você</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-4">
+                <Zap className="w-8 h-8 text-red-600" />
+                <span className="ml-3 font-semibold">ENTREGA EXPRESSA</span>
+              </div>
+              <p>Em até 24 horas (principais capitais)</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-4">
+                <Lock className="w-8 h-8 text-red-600" />
+                <span className="ml-3 font-semibold">EMBALAGEM DISCRETA</span>
+              </div>
+              <p>Sua privacidade garantida</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-4">
+                <RefreshCw className="w-8 h-8 text-red-600" />
+                <span className="ml-3 font-semibold">GARANTIA DE SATISFAÇÃO</span>
+              </div>
+              <p>Devolução facilitada se não amar</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            🔍 COMO O EXOTIC HONEY TRANSFORMA SUA PERFORMANCE
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <div className="bg-gray-50 p-6 rounded-lg shadow-lg text-center">
+              <div className="text-4xl mb-4">1️⃣</div>
+              <h3 className="text-xl font-semibold mb-4">Mecanismo de Ação</h3>
+              <p>A fórmula exclusiva melhora a circulação sanguínea e potencializa a energia celular</p>
+            </div>
+            <div className="bg-gray-50 p-6 rounded-lg shadow-lg text-center">
+              <div className="text-4xl mb-4">2️⃣</div>
+              <h3 className="text-xl font-semibold mb-4">Absorção Rápida</h3>
+              <p>Os compostos bioativos são rapidamente absorvidos pelo organismo</p>
+            </div>
+            <div className="bg-gray-50 p-6 rounded-lg shadow-lg text-center">
+              <div className="text-4xl mb-4">3️⃣</div>
+              <h3 className="text-xl font-semibold mb-4">Resultado Extraordinário</h3>
+              <p>Aumento de disposição, sensibilidade e desempenho em apenas 30 minutos</p>
+            </div>
+          </div>
+          <div className="bg-red-50 p-8 rounded-lg">
+            <h3 className="text-2xl font-bold text-center mb-6">Dicas de Uso</h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="flex items-center">
+                <Droplet className="w-6 h-6 text-red-600 mr-3" />
+                <p>"Tome um sachê com água 30 minutos antes do momento especial"</p>
+              </div>
+              <div className="flex items-center">
+                <Brain className="w-6 h-6 text-red-600 mr-3" />
+                <p>"Para resultados ainda melhores, hidrate-se bem durante o dia"</p>
+              </div>
+              <div className="flex items-center">
+                <Heart className="w-6 h-6 text-red-600 mr-3" />
+                <p>"Pode ser usado diariamente para resultados cumulativos"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How to Buy */}
+      <section className="py-16 bg-gradient-to-r from-red-50 to-red-100">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            📲 GARANTA SEU EXOTIC HONEY EM 3 PASSOS SIMPLES
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+              <div className="text-4xl mb-4">1️⃣</div>
+              <p>Selecione a quantidade desejada no botão abaixo</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+              <div className="text-4xl mb-4">2️⃣</div>
+              <p>Preencha seus dados para entrega</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+              <div className="text-4xl mb-4">3️⃣</div>
+              <p>Escolha pagar apenas na entrega e receba em até 24h</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Urgency Banner */}
       <div className="bg-red-600 text-white py-4">
         <div className="container mx-auto px-4 text-center">
@@ -186,6 +303,55 @@ function App() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Security Section */}
+      <section className="py-16 bg-gradient-to-r from-red-50 to-red-100">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            🛡️ COMPRA 100% SEGURA E GARANTIDA
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+              <CheckCircle className="w-12 h-12 text-red-600 mx-auto mb-4" />
+              <h3 className="font-semibold mb-2">Garantia de Satisfação</h3>
+              <p>Experimente sem riscos</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+              <Shield className="w-12 h-12 text-red-600 mx-auto mb-4" />
+              <h3 className="font-semibold mb-2">Pagamento na Entrega</h3>
+              <p>Só pague ao receber</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+              <Lock className="w-12 h-12 text-red-600 mx-auto mb-4" />
+              <h3 className="font-semibold mb-2">Embalagem Discreta</h3>
+              <p>Sua privacidade é nossa prioridade</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+              <Star className="w-12 h-12 text-red-600 mx-auto mb-4" />
+              <h3 className="font-semibold mb-2">Ingredientes Naturais</h3>
+              <p>Seguro e eficaz</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-16 bg-gradient-to-r from-red-700 to-red-900 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-8">
+            🔥 SIM! QUERO TRANSFORMAR MINHA VIDA ÍNTIMA AGORA! 🔥
+          </h2>
+          <p className="text-xl mb-8">Esta promoção expira em breve. Já foram vendidas 273 unidades hoje!</p>
+          <a 
+            href={packages[4].link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-white text-red-600 text-xl font-bold py-4 px-8 rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            GARANTIR MEU EXOTIC HONEY COM DESCONTO
+          </a>
         </div>
       </section>
 
