@@ -21,7 +21,7 @@ const Products = () => {
     id: 1,
     name: "Exotic Honey",
     description: "Experimente o poder da natureza em sua forma mais pura. Resultados surpreendentes desde a primeira experiência.",
-    image: "https://i.pinimg.com/736x/a2/ba/d9/a2bad93f4e25cfa80b2fd43185ac2a38.jpg",
+    image: "https://miess.vteximg.com.br/arquivos/ids/228302-900-900/SF6056_1.jpg?v=637624824218230000",
     variants: [
       { units: 2, price: 87.00, link: "https://entrega.logzz.com.br/pay/mem8d5ngk/rmkt-2-unidades---r87" },
       { units: 4, price: 127.00, link: "https://entrega.logzz.com.br/pay/mem8d5ngk/4-unidades-r127" },
@@ -84,7 +84,7 @@ const Products = () => {
     id: 6,
     name: "Gel POTENTE MAX",
     description: "A solução definitiva para quem busca resultados extraordinários. Efeito garantido.",
-    image: "https://http2.mlstatic.com/D_NQ_NP_968044-MLB70651529250_072023-O.webp",
+    image: "https://i.pinimg.com/736x/a2/ba/d9/a2bad93f4e25cfa80b2fd43185ac2a38.jpg",
     variants: [
       { units: 1, price: 117.00, link: "https://entrega.logzz.com.br/pay/memype74w/1-unidade---11700" },
       { units: 2, price: 157.00, link: "https://entrega.logzz.com.br/pay/memype74w/2-uunidades---r-18700" },
