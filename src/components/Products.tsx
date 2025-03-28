@@ -21,7 +21,7 @@ const Products = () => {
     id: 1,
     name: "Exotic Honey",
     description: "Experimente o poder da natureza em sua forma mais pura. Resultados surpreendentes desde a primeira experiência.",
-    image: "https://img.irroba.com.br/fit-in/450x450/filters:format(webp):fill(fff):quality(80)/lojasaca/catalog/api/lojasaca_softvari/SF6056NOVFT01.jpg",
+    image: "https://i.pinimg.com/736x/a2/ba/d9/a2bad93f4e25cfa80b2fd43185ac2a38.jpg",
     variants: [
       { units: 2, price: 87.00, link: "https://entrega.logzz.com.br/pay/mem8d5ngk/rmkt-2-unidades---r87" },
       { units: 4, price: 127.00, link: "https://entrega.logzz.com.br/pay/mem8d5ngk/4-unidades-r127" },
