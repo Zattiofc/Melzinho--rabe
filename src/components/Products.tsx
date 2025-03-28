@@ -76,8 +76,8 @@ const Products = () => {
     image: "https://http2.mlstatic.com/D_NQ_NP_742647-MLB80361001132_112024-O-kit-gel-estimulante-masculino-big-tora-gotas-feno-grego.webp",
     variants: [
       { units: 1, price: 79.90, link: "https://entrega.logzz.com.br/pay/memlonkdk/yghdj-1-unidade-gotas" },
-      { units: 2, price: 179.90, link: "https://entrega.logzz.com.br/pay/memlonkdk/gexkp-3-unidades-gotas" },
-      { units: 3, price: 239.90, link: "https://entrega.logzz.com.br/pay/memlonkdk/atryx-5-unidades-gotas" }
+      { units: 3, price: 179.90, link: "https://entrega.logzz.com.br/pay/memlonkdk/gexkp-3-unidades-gotas" },
+      { units: 5, price: 239.90, link: "https://entrega.logzz.com.br/pay/memlonkdk/atryx-5-unidades-gotas" }
     ]
   },
   {
