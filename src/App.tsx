@@ -9,8 +9,17 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <Toaster />
+    <div className="min-h-screen bg-white">
+      <Toaster 
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: '#333',
+            color: '#fff',
+          },
+        }}
+      />
       <Header />
       <main>
         <Hero />
