@@ -58,7 +58,7 @@ const Hero = () => {
 
       <div className="mt-8 relative">
         <img 
-          src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+          src="https://img.freepik.com/premium-photo/mixed-couple-latino-man-black-woman-smiling-each-other-bed-panoramic-photography-3x1_998492-214.jpg?ga=GA1.1.1460315777.1736461566&semt=ais_hybrid"
           alt="Produtos Naturais"
           className="rounded-xl shadow-xl w-full object-cover h-[200px]"
         />
