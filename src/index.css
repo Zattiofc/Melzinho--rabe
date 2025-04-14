@@ -1,3 +1,112 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+.hero-gradient {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
+}
+
+.cta-button {
+  background-color: #8B0000;
+  color: #D4AF37;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(139, 0, 0, 0.2);
+  border: 2px solid #D4AF37;
+}
+
+.cta-button:hover {
+  background-color: #6B0000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(139, 0, 0, 0.3);
+}
+
+.testimonial-card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.guarantee-box {
+  border: 2px solid #D4AF37;
+  background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+  box-shadow: 0 4px 6px rgba(212, 175, 55, 0.1);
+}
+
+.product-card {
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-color: #D4AF37;
+}
+
+.floating-notification {
+  animation: float 3s ease-in-out infinite;
+  border: 1px solid rgba(139, 0, 0, 0.1);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.benefit-card {
+  background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.benefit-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+@media (max-width: 768px) {
+  .cta-button {
+    width: 90%;
+    margin: 0 auto;
+    font-size: 1.25rem;
+    padding: 1rem;
+  }
+  
+  h1 {
+    font-size: 2rem !important;
+  }
+  
+  .floating-notification {
+    width: 90%;
+    left: 5%;
+    right: 5%;
+  }
+}
