@@ -35,6 +35,12 @@
       fbq('init', '1577526389621543');
       fbq('track', 'PageView');
     </script>
+    <!-- End Meta Pixel Code -->
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Fallback para quem desabilita JS (Pixel) -->
     <noscript>
       <img
         height="1"
@@ -44,10 +50,7 @@
         alt="Facebook Pixel"
       />
     </noscript>
-    <!-- End Meta Pixel Code -->
-  </head>
-  <body>
-    <div id="root"></div>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
